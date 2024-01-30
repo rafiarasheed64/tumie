@@ -1,0 +1,1452 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <title>Tumie</title>
+    <style>
+        * {
+            font-family: "Nunito Sans", sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .start {
+            height: 100vh;
+            width: 100%;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            display: none;
+        }
+
+        .image {
+            position: absolute;
+            top: 30%;
+        }
+
+        .first {
+            height: 110vh;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .navbar {
+            width: 100%;
+            padding: 25px 15px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 111;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            height: 40px;
+            width: max-content;
+        }
+
+        .list {
+            height: max-content;
+            width: 45%;
+            display: flex;
+            justify-content: space-between;
+            list-style: none;
+        }
+
+        .lst {
+            cursor: pointer;
+            transition: all 0.25s linear;
+            position: relative;
+        }
+
+        .lst:hover {
+            color: yellow;
+        }
+
+        .clr {
+            color: yellow;
+        }
+
+        .dropdown1 {
+            height: max-content;
+            background-color: white;
+            position: absolute;
+            left: 0;
+            top: 80px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s linear;
+            display: flex;
+        }
+        .up {
+            top: 20px;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .lst1 {
+            width: 220px;
+            list-style: none;
+            color: black;
+            padding: 15px;
+            border: 1px solid #686767;
+        }
+
+        .clr1 {
+            color: purple;
+        }
+
+        .icon-div {
+            width: 15%;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .icn {
+            font-size: 20px;
+            color: white;
+
+        }
+
+        .searchbar {
+            height: 30vh;
+            width: 100%;
+            background-color: white;
+            position: absolute;
+            top: -30%;
+            left: 0;
+            z-index: 1111;
+            transition: all 0.3s linear;
+        }
+
+        .down {
+            top: 0;
+        }
+
+        .icn1 {
+            color: white;
+            padding: 5px;
+            background-color: purple;
+            margin-left: 96%;
+            font-size: 25px;
+        }
+
+        .text {
+            font-size: 20px;
+            margin-left: 10%;
+            margin-top: 30px;
+        }
+
+        .input {
+            width: 80%;
+            height: 50px;
+            margin-left: 10%;
+            margin-top: 20px;
+            padding-left: 15px;
+
+        }
+
+        .sidebar {
+            height: 100vh;
+            width: 27%;
+            background-color: white;
+            position: absolute;
+            top: 0;
+            right: -30%;
+            z-index: 11111;
+            transition: all 0.5s linear;
+        }
+
+        .left {
+            right: 0;
+        }
+
+        .bx1 {
+            height: 60px;
+            background-color: purple;
+            color: yellow;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .bx2,
+        .bx4 {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .bx4 {
+            margin: auto;
+            margin-top: 30px;
+            width: 80%;
+            font-size: 30px;
+        }
+
+        .button1 {
+            padding: 20px 50px;
+            margin-left: 24%;
+            margin-top: 30px;
+            background-color: rgb(48, 47, 47);
+            color: white;
+        }
+
+        .button1:hover {
+            background-color: purple;
+        }
+
+        .div {
+            position: absolute;
+            right: 5%;
+            bottom: 5%;
+            z-index: 4;
+            width: 100px;
+            display: flex;
+            justify-content: space-between;
+
+        }
+
+        .pervious,
+        .next {
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            border: 1px solid white;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .first-slide {
+            height: 100%;
+            width: 100%;
+            background-image: url(./tumie-image/slider-02.jpg);
+            background-size: cover;
+            background-position: center;
+            position: absolute;
+            z-index: 2;
+            opacity: 1;
+            padding: 1px;
+            transition: all 0.5s linear;
+
+        }
+        .black {
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 11;
+            height: 100%;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.452);
+        }
+        .box {
+            height: 60%;
+            width: 35%;
+            margin-left: 58%;
+            margin-top: 13%;
+        }
+        .text1 {
+            color: yellow;
+            font-size: 20px;
+            letter-spacing: 3px;
+            animation: animat 0.5s linear;
+        }
+
+        @keyframes animat {
+            0% {
+                top: 50px;
+                opacity: 0;
+            }
+
+            100% {
+                top: 0;
+                opacity: 1;
+            }
+        }
+
+        .text2 {
+            color: white;
+            font-size: 55px;
+            margin-top: 30px;
+        }
+
+        .text3 {
+            margin-top: 20px;
+            line-height: 25px;
+            color: white;
+        }
+
+        .button2 {
+            padding: 20px 40px;
+            background-color: yellow;
+            border-radius: 20px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        .second-slide {
+            height: 100%;
+            width: 100%;
+            background-color: aqua;
+            background-image: url(./tumie-image/slider-bg.jpg);
+            background-size: cover;
+            background-position: center;
+            position: absolute;
+            display: flex;
+            transition: all 0.5s linear;
+        }
+        .box2 {
+            height: 60%;
+            width: 35%;
+            margin-left: 10%;
+            margin-top: 13%;
+        }
+        .box02 {
+            height: 80%;
+            width: 50%;
+            margin-left: 2%;
+            margin-top: 10%;
+            position: relative;
+        }
+        .yellowcircle {
+            height: 90%;
+            width: 75%;
+            margin: auto;
+            margin-top: 5%;
+            border-radius: 50%;
+            background-color: yellow;
+            transform: scale(0);
+            transition: all 0.6s linear 0.4s;
+        }
+        .image00 {
+            position: absolute;
+            left: 80%;
+            top: 10%;
+            height: 90%;
+            width: 80%;
+        }
+        .moveBack {
+            transition: all 0.4s linear;
+            left: 20%;
+        }
+        .second {
+            height: 100vh;
+            width: 100%;
+            background-color: rgb(242, 242, 242);
+            padding: 1px;
+        }
+        .text4 {
+            text-align: center;
+            margin-top: 50px;
+            letter-spacing: 3px;
+            font-size: 20px;
+            color: purple;
+        }
+        .text5 {
+            font-size: 55px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .box1 {
+            height: max-content;
+            width: 90%;
+            margin: auto;
+            margin-top: 5%;
+            display: flex;
+            justify-content: space-between;
+        }
+        .box3 {
+            height: max-content;
+            width: max-content;
+            position: relative;
+        }
+
+        .dashed {
+            height: 200px;
+            width: 200px;
+            border-radius: 50%;
+            transition: all 2s linear;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 122;
+        }
+        .img-div {
+            height: 200px;
+            width: 200px;
+            border-radius: 50%;
+            overflow: hidden;
+            z-index: 11;
+        }
+        .box3:hover .dashed {
+            transform: rotate(360deg);
+            border: 2px dashed purple;
+        }
+        .img {
+            height: 100%;
+            width: 100%;
+            border-radius: 50%;
+            transition: all 0.3s linear;
+        }
+        .box3:hover .img {
+            transform: scale(1.05);
+        }
+        .text6 {
+            text-align: center;
+            font-size: 25px;
+        }
+        .third {
+            height: 65vh;
+            width: 100%;
+            background-color: rgb(255, 255, 255);
+        }
+        .box4 {
+            width: 90%;
+            display: flex;
+            justify-content: space-between;
+            margin: auto;
+            margin-top: 5%;
+        }
+        .box5 {
+            width: 48%;
+            background-color: rgb(250, 190, 103);
+            overflow: hidden;
+            display: flex;
+        }
+        .box5:hover .image0 {
+            transform: scale(1.05);
+        }
+        .img-div1 {
+            height: max-content;
+            width: 52%;
+            overflow: hidden;
+        }
+        .image0 {
+            transition: all 0.3s linear;
+        }
+        .box6 {
+            margin-left: 5%;
+        }
+        .text7 {
+            color: purple;
+            font-size: 25px;
+            margin-top: 60px;
+        }
+        .text8 {
+            color: purple;
+            font-size: 35px;
+            margin-top: 15px;
+        }
+        .button3 {
+            padding: 15px 25px;
+            background-color: purple;
+            color: white;
+            font-size: 20px;
+            border-radius: 15px;
+            border: none;
+            cursor: pointer;
+        }
+        .fourth {
+            height: max-content;
+            padding-bottom: 70px;
+            width: 100%;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .list1 {
+            width: 50%;
+            display: flex;
+            justify-content: space-between;
+            list-style: none;
+        }
+        .lst2 {
+            padding: 10px;
+            border-radius: 15px;
+            transition: all linear;
+            border: 2px;
+        }
+        .lst2:hover {
+            color: purple;
+        }
+        .border {
+            border: 2px dashed purple;
+        }
+        .box7 {
+            height: max-content;
+            width: 90%;
+            margin-top: 60px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .ALL {
+            height: 400px;
+            width: max-content;
+            display: none;
+            box-shadow: 1px 1px 20px 20px rgba(128, 128, 128, 0.342);
+        }
+        .active-card {
+            transition: all 0.3s linear;
+            display: block;
+        }
+        .img-box1 {
+            overflow: hidden;
+            height: max-content;
+            position: relative;
+        }
+        .ALL:hover .image1 {
+            transform: scale(1.1);
+        }
+        .bx8 {
+            height: 150px;
+            width: 50px;
+            position: absolute;
+            top: 0;
+            right: 0;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .icn2 {
+            padding: 10px;
+            border-radius: 50%;
+            background-color: rgb(185, 185, 185);
+            margin-left: -100px;
+            transition: all 0.2s linear;
+            opacity: 0;
+        }
+        .icnn {
+            margin-left: 0;
+            opacity: 1;
+        }
+        .ALL:hover .icn2 {
+            margin-left: 0;
+            opacity: 1;
+        }
+        .text9 {
+            text-align: center;
+            font-size: 20px;
+        }
+        .text10 {
+            text-align: center;
+            font-size: 20px;
+            margin-top: 10px;
+        }
+        .fifth{
+            height: 60vh;
+            width: 100%;
+            display: flex;
+            background-color: purple;
+        }
+        .yellowdiv{
+            height: 100%;
+            width: 40%;
+            background-color: yellow;
+            clip-path: polygon(0 0, 74% 0, 100% 100%, 0% 100%);
+        }
+        .image2{
+            height: 80%;
+            width: 50%;
+            margin-left: 15%;
+            margin-top: 15%;
+        }
+        .purplediv{
+            height: 100%;
+            width: 65%;
+            display: flex;
+            align-items: center;
+
+        }
+        .contentdiv{
+            width: 55%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .image-box1{
+            height: 60%;
+            width: 35%;
+            margin-left: 15%;
+            margin-top: 15%;
+        }
+        .image3{
+            height: 100%;
+            width: 100%;
+        }
+        .sixth{
+            height: max-content;
+            width: 100%;
+            padding: 70px 0;
+        }
+        .box8{
+            width: 85%;
+            margin: auto;
+            margin-top: 50px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .bx10:hover .image1 {
+            transform: scale(1.1);
+        }
+        .bx10:hover .icn2 {
+            margin-left: 0;
+            opacity: 1;
+        }
+        .bx10{
+            display: flex;
+            justify-content: space-between;
+            width: 48%;
+            transition: all 0.3s linear;
+        }
+        .timer{
+            height: 30px;
+            width: 90%;
+            background-color: rgb(255,216,104);
+            border-top-right-radius: 15px;
+            border-bottom-right-radius: 15px;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+        .text11{
+            font-size: 18px;
+            margin-top: 30px;
+        }
+        .text12{
+            margin-top: 10px;
+            font-size: 20px;
+        }
+        .dottedline{
+            width: 100%;
+            border: 1px dashed yellow;
+            margin-top: 30px;
+        }
+        .lst3{
+            color: purple;
+            margin-top: 20px;
+            margin-left: 20px;
+        }
+        .seventh{
+            height: 100vh;
+            width: 100%;
+            padding: 70px;
+        }
+        .box9{
+            display: flex;
+            justify-content: space-between;
+        }
+        .box10{
+            width: 50%;
+        }
+        .text13{
+            letter-spacing: 2px;
+            margin-top: 60px;
+        }
+        .text14{
+            margin-top: 25px;
+            font-size: 35px;
+        }
+        .text15{
+            margin-top: 30px;
+            line-height: 35px;
+        }
+        .eighth{
+            padding: 70px;
+        }
+        .box11{
+            width: 30%;
+            border-radius: 15px;
+            border: 1px solid rgb(222,222,222);
+            padding-bottom: 30px;
+        }
+        .img-div2{
+            height: 54%;
+            width: 95%;
+            border-radius: 15px;
+            margin: auto;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+        .image4{
+            transition: all 0.2s linear;
+            height: 100%;
+        }
+        .box11:hover .image4{
+            transform: scale(1.1);
+        }
+        .text16{
+            text-align: center;
+            margin-top: 20px;
+        }
+        .text17{
+            text-align: center;
+            font-size: 30px;
+            font-weight: 500;
+            margin-top: 20px;
+            transition: all 0.2s linear;
+        }
+        .box11:hover .text17{
+            color: purple;
+        }
+        .button4{
+            padding: 15px 25px;
+            background-color: rgb(255,216,104);
+            color: white;
+            border: none;
+            font-weight: 600;
+            border-radius: 15px;
+            margin-left: 35%;
+            margin-top: 15px;
+            transition: all 0.2s linear;
+        }
+        .box11:hover .button4{
+            background-color: purple;
+        }
+        .nineth{
+            height: max-content;
+            width: 100%;
+            padding: 50px;
+            background-color: rgb(71,70,84);
+        }
+        .box13{
+            width: 100%;
+            margin: auto;
+            margin-top: 50px;
+            display: flex;
+            justify-content: space-between;
+            
+        }
+        .box12{
+            width: 20%;
+            height: max-content;
+        }
+        .text18{
+            color: white;
+            font-size: 29px;
+        }
+        .text19{
+            color: white;
+            margin-top: 20px;
+            line-height: 30px;
+        }
+        .icon-div1{
+            width: 80%;
+            margin-top: 30px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .icn3{
+            padding: 10px;
+            border-radius: 5px;
+            background-color: white;
+            color: purple;
+            cursor: pointer;
+            transition: all 0.25s linear;
+        }
+        .icn3:hover{
+            background-color: rgb(255,216,104);
+        }
+        .list2{
+            list-style: none;
+        }
+        .clr2{
+            color: rgb(255,216,104);
+        }
+        .clr2:hover{
+            text-decoration: underline;
+        }
+        .bx11{
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .icn4{
+            padding: 10px;
+            color: purple;
+            font-size: 30px;
+            border-radius: 10px;
+            background-color: rgb(255,216,104);
+        }
+        .text20{
+            color: white;
+            margin-left: 10px;
+            line-height: 24px;
+        }
+        .line{
+            height: 2px;
+            width: 100%;
+            background-color: rgb(117,117,123);
+            margin-top: 40px;
+        }
+        .clr3{
+           color: rgb(255,216,104); 
+           font-size: 20px;
+           text-decoration: none;
+        }
+        .box14{
+            display: flex;
+            justify-content: space-between;
+        }
+        .text21{
+            color: rgb(161,158,141);
+            margin-top: 20px;
+        }
+        .icn5{
+            color: red;
+        }
+        .clr4:hover{
+            color: white;
+        }
+        .image5{
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="start">
+        <img class="image" src="./tumie-image/dog-head-md.png" alt="">
+        <img src="./tumie-image/dog-body-md.png" alt="">
+    </div>
+    <section class="first">
+        <div class="navbar">
+            <div class="logo">
+                <img src="./tumie-image/logo-light.png" alt="">
+            </div>
+            <ul class="list">
+                <li class="lst clr">HOME
+                    <div class="dropdown1">
+                        <ul>
+                            <li class="lst1 clr1">Home One</li>
+                            <li class="lst1">Home Two</li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="lst">ABOUT
+                    <div class="dropdown1"></div>
+                </li>
+                <li class="lst">SHOP
+                    <div class="dropdown1">
+                        <div class="bx">
+                            <ul>
+                                <li class="lst1">SHOP LAYOUT</li>
+                                <li class="lst1">Shop 3 Column</li>
+                                <li class="lst1">Shop 3 Column</li>
+                                <li class="lst1">Shop Left Sidebar</li>
+                                <li class="lst1">Shop Right Sidebar</li>
+
+                            </ul>
+                        </div>
+                        <div class="bx">
+                            <ul>
+                                <li class="lst1">SINGLE PRODUCT</li>
+                                <li class="lst1">Single Product Normal</li>
+                                <li class="lst1">Single Product Variable</li>
+                                <li class="lst1">Single Product Group</li>
+                                <li class="lst1">Single Product Affiliate</li>
+
+                            </ul>
+                        </div>
+                        <div class="bx">
+                            <ul>
+                                <li class="lst1">OTHER PAGES</li>
+                                <li class="lst1">Shopping Cart</li>
+                                <li class="lst1">Checkout</li>
+                                <li class="lst1">Wishlist</li>
+                                <li class="lst1">Compare</li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li class="lst">BLOG
+                    <div class="dropdown1">
+                        <div class="bx">
+                            <ul>
+                                <li class="lst1">BLOG LAYOUT</li>
+                                <li class="lst1">Blog Grid</li>
+                                <li class="lst1">Blog Left Sidebar</li>
+                                <li class="lst1">Blog Right Sidebar</li>
+
+                            </ul>
+                        </div>
+                        <div class="bx">
+                            <ul>
+                                <li class="lst1">SINGLE BLOG</li>
+                                <li class="lst1">Blog Details</li>
+                                <li class="lst1">Blog Details Left Sidebar</li>
+                                <li class="lst1">Blog Details Right Sidebar</li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li class="lst">PAGES
+                    <div class="dropdown1">
+                        <ul>
+                            <li class="lst1">Account</li>
+                            <li class="lst1">Login</li>
+                            <li class="lst1">Register</li>
+                            <li class="lst1">Page Not Found</li>
+
+                        </ul>
+                    </div>
+                </li>
+                <li class="lst">CONTACT
+                    <div class="dropdown1"></div>
+                </li>
+            </ul>
+            <div class="icon-div">
+                <i class="bi bi-search icn"></i>
+                <i class="bi bi-person icn"></i>
+                <i class="bi bi-heart icn"></i>
+                <i class="bi bi-basket icn"></i>
+            </div>
+        </div>
+        <div class="searchbar">
+            <i class="bi bi-x-lg icn1"></i>
+            <p class="text">Start Typing And Press Enter To Search</p>
+            <input class="input" type="text" id="inp" placeholder="Search Entire Store...">
+        </div>
+        <div class="sidebar">
+            <div class="bx1">
+                SHOPPING CART
+                <i class="bi bi-chevron-right"></i>
+            </div>
+            <div class="bx2">
+                <img src="./tumie-image/1 (2).jpg" alt="">
+                <div class="bx3">
+                    <p>Leather Mens Slipper</p>
+                    <p>1 x £69.99</p>
+                </div>
+            </div>
+            <div class="bx2">
+                <img src="./tumie-image/2 (2).jpg" alt="">
+                <div class="bx3">
+                    <p>Leather Mens Slipper</p>
+                    <p>1 x £69.99</p>
+                </div>
+            </div>
+            <div class="bx4">
+                <p>Subtotal:</p>
+                <p>£89.99</p>
+            </div>
+            <button class="button1">VEIW CART</button>
+            <button class="button1">CHECKOUT</button>
+
+        </div>
+        <div class="div">
+            <div class="pervious">
+                <i class="bi bi-chevron-left"></i>
+            </div>
+            <div class="next">
+                <i class="bi bi-chevron-right"></i>
+            </div>
+
+        </div>
+        <div class="first-slide">
+            <div class="black">
+                <div class="box">
+                    <p class="text1">100% GENUE PRODUCTS</p>
+                    <h1 class="text2">This Food Best Your Pet</h1>
+                    <p class="text3">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ducimus temporibus quasi
+                        consequatur totam odit cumque sunt similique, rerum perspiciatis necessitatibus! Reprehenderit,
+                        nulla. Eius deserunt sunt cumque, culpa odio nam! Dolorem?</p>
+                    <button class="button2">SHOP NOW</button>
+                </div>
+            </div>
+        </div>
+        <div class="second-slide">
+            <div class="box2">
+                <p class="text1">UPTO 40% OFF</p>
+                <h1 class="text2">A Great Meal With Your Pet</h1>
+                <button class="button2">SHOP NOW</button>
+            </div>
+            <div class="box02">
+                <div class="yellowcircle"></div>
+                <img class="image00" src="./tumie-image/slider-01.png" alt="">
+            </div>
+        </div>
+    </section>
+    <section class="second">
+        <h3 class="text4">TRENDING CATEGORIES</h3>
+        <h1 class="text5">Shop By Category</h1>
+        <div class="box1">
+            <div class="box3">
+                <div class="img-div">
+
+                    <img class="img" src="https://template.hasthemes.com/tuime/tuime/assets/img/shop/category/1.webp"
+                        alt="">
+                    <div class="dashed"></div>
+                </div>
+                <p class="text6">Cats</p>
+            </div>
+            <div class="box3">
+                <div class="img-div">
+                    <img class="img" src="https://template.hasthemes.com/tuime/tuime/assets/img/shop/category/2.webp"
+                        alt="">
+                    <div class="dashed"></div>
+                </div>
+                <p class="text6">Gold Fish</p>
+            </div>
+            <div class="box3">
+                <div class="img-div">
+                    <img class="img" src="https://template.hasthemes.com/tuime/tuime/assets/img/shop/category/3.webp"
+                        alt="">
+                    <div class="dashed"></div>
+                </div>
+                <p class="text6">Parrots</p>
+            </div>
+            <div class="box3">
+                <div class="img-div">
+                    <img class="img" src="https://template.hasthemes.com/tuime/tuime/assets/img/shop/category/4.webp"
+                        alt="">
+                    <div class="dashed"></div>
+                </div>
+                <p class="text6">Dog</p>
+            </div>
+            <div class="box3">
+                <div class="img-div">
+                    <img class="img" src="https://template.hasthemes.com/tuime/tuime/assets/img/shop/category/5.webp"
+                        alt="">
+                    <div class="dashed"></div>
+                </div>
+                <p class="text6">Rabbits</p>
+            </div>
+        </div>
+        </div>
+    </section>
+    <section class="third">
+        <div class="box4">
+            <div class="box5">
+                <div class="img-div1">
+                    <img class="image0" src="https://template.hasthemes.com/tuime/tuime/assets/img/shop/banner/1.webp"
+                        alt="">
+                </div>
+                <div class="box6">
+                    <h4 class="text7">50% Off</h4>
+                    <h2 class="text8">DOG FOOD</h2>
+                    <button class="button3">Shop Now</button>
+                </div>
+            </div>
+            <div class="box5">
+                <div class="img-div1">
+                    <img class="image0" src="https://template.hasthemes.com/tuime/tuime/assets/img/shop/banner/2.webp"
+                        alt="">
+                </div>
+                <div class="box6">
+                    <h4 class="text7">50% Off</h4>
+                    <h2 class="text8">DOG FOOD</h2>
+                    <button class="button3">Shop Now</button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <section class="fourth">
+        <h3 class="text4">BEST PRODUCT</h3>
+        <h1 class="text5">New Collection</h1>
+        <ul class="list1">
+            <li class="lst2 border">ALL</li>
+            <li class="lst2">NEW</li>
+            <li class="lst2">SELLERS</li>
+            <li class="lst2">FEATURED</li>
+            <li class="lst2">SALE</li>
+        </ul>
+        <div class="box7">
+            <div class="bx7 ALL active-card NEW SALE">
+                <div class="img-box">
+                    <div class="img-box1">
+                        <img class="image1" src="./tumie-image/1.jpg" alt="">
+                        <div class="bx8">
+                            <i class="bi bi-heart icn2 icnn"></i>
+                            <i class="bi bi-bag-check icn2"></i>
+                            <i class="bi bi-eye icn2"></i>
+                        </div>
+                    </div>
+                    <p class="text9">Joust Duffle Bag</p>
+                    <h4 class="text10">$20.19</h4>
+                </div>
+            </div>
+            <div class="bx7 ALL active-card FEATURED SELLERS">
+                <div class="img-box">
+                    <div class="img-box1">
+                        <img class="image1" src="./tumie-image/2.jpg" alt="">
+                        <div class="bx8">
+                            <i class="bi bi-heart icn2 icnn"></i>
+                            <i class="bi bi-bag-check icn2"></i>
+                            <i class="bi bi-eye icn2"></i>
+                        </div>
+                    </div>
+                    <p class="text9">Endeavor Daytripa</p>
+                    <h4 class="text10">$33.00</h4>
+                </div>
+            </div>
+            <div class="bx7 ALL active-card NEW">
+                <div class="img-box">
+                    <div class="img-box1">
+                        <img class="image1" src="./tumie-image/3.jpg" alt="">
+                        <div class="bx8">
+                            <i class="bi bi-heart icn2 icnn"></i>
+                            <i class="bi bi-bag-check icn2"></i>
+                            <i class="bi bi-eye icn2"></i>
+                        </div>
+                    </div>
+                    <p class="text9">Impulse Duffle</p>
+                    <h4 class="text10">$65.00</h4>
+                </div>
+            </div>
+            <div class="ALL active-card SALE FEATURED SELLERS">
+                <div class="img-box">
+                    <div class="img-box1">
+                        <img class="image1" src="./tumie-image/4 (1).jpg" alt="">
+                        <div class="bx8">
+                            <i class="bi bi-heart icn2 icnn"></i>
+                            <i class="bi bi-bag-check icn2"></i>
+                            <i class="bi bi-eye icn2"></i>
+                        </div>
+                    </div>
+                    <p class="text9">Driven Backpack</p>
+                    <h4 class="text10">$25.00</h4>
+                </div>
+            </div>
+            <div class="ALL active-card NEW SELLERS">
+                <div class="img-box">
+                    <div class="img-box1">
+                        <img class="image1" src="./tumie-image/5 (1).jpg" alt="">
+                        <div class="bx8">
+                            <i class="bi bi-heart icn2 icnn"></i>
+                            <i class="bi bi-bag-check icn2"></i>
+                            <i class="bi bi-eye icn2"></i>
+                        </div>
+                    </div>
+                    <p class="text9">Fusion Backpack</p>
+                    <h4 class="text10">$45.00</h4>
+                </div>
+            </div>
+            <div class="ALL active-card FEATURED SALE">
+                <div class="img-box">
+                    <div class="img-box1">
+                        <img class="image1" src="./tumie-image/6 (1).jpg" alt="">
+                        <div class="bx8">
+                            <i class="bi bi-heart icn2 icnn"></i>
+                            <i class="bi bi-bag-check icn2"></i>
+                            <i class="bi bi-eye icn2"></i>
+                        </div>
+                    </div>
+                    <p class="text9">Savvy Shoulder Tote</p>
+                    <h4 class="text10">$30.00</h4>
+                </div>
+            </div>
+            <div class="ALL active-card SALE NEW">
+                <div class="img-box">
+                    <div class="img-box1">
+                        <img class="image1" src="./tumie-image/7.jpg" alt="">
+                        <div class="bx8">
+                            <i class="bi bi-heart icn2 icnn"></i>
+                            <i class="bi bi-bag-check icn2"></i>
+                            <i class="bi bi-eye icn2"></i>
+                        </div>
+                    </div>
+                    <p class="text9">Voyage Yoga Bag</p>
+                    <h4 class="text10">$39.00</h4>
+                </div>
+            </div>
+            <div class="ALL active-card FEATURED SELLERS">
+                <div class="img-box">
+                    <div class="img-box1">
+                        <img class="image1" src="./tumie-image/8.jpg" alt="">
+                        <div class="bx8">
+                            <i class="bi bi-heart icn2 icnn"></i>
+                            <i class="bi bi-bag-check icn2"></i>
+                            <i class="bi bi-eye icn2"></i>
+                        </div>
+                    </div>
+                    <p class="text9">Wayfarer Messenger Bag</p>
+                    <h4 class="text10">$50.00</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="fifth">
+        <div class="yellowdiv">
+            <img class="image2" src="https://template.hasthemes.com/tuime/tuime/assets/img/photos/divider1.webp" alt="">
+        </div>
+        <div class="purplediv">
+            <div class="contentdiv">
+                <p class="text1">SAVE 50% OFF</p>
+                <h1 class="text2">Best Deal Offer</h1>
+                <p class="text3">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore etlop</p>
+                <button class="button2">SHOP NOW</button>
+            </div>
+            <div class="image-box1">
+                <img class="image3" src="https://template.hasthemes.com/tuime/tuime/assets/img/photos/divider2.webp" alt="">
+            </div>
+        </div>
+    </section>
+    <section class="sixth">
+        <h3 class="text4">TRENDING PRODUCT</h3>
+        <h1 class="text5">Deal Of The Day</h1>
+        <div class="box8">
+            <div class="bx10">
+                <div class="bx9">
+                    <div class="img-box1">
+                        <img class="image1" src="./tumie-image/9.jpg" alt="">
+                        <div class="bx8">
+                            <i class="bi bi-heart icn2 icnn"></i>
+                            <i class="bi bi-bag-check icn2"></i>
+                            <i class="bi bi-eye icn2"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="bx9">
+                    <div class="timer">End In: <span>10</span> : <span class="hour">59</span> : <span class="mint">59</span> : <span class="sec">59</span></div>
+                    <p class="text11">Joust Duffle Bag</p>
+                    <h4 class="text12">$20.19</h4>
+                    <div class="dottedline"></div>
+                    <ul>
+                        <li class="lst3">Predecessor : None.</li>
+                        <li class="lst3">Support Type : Neutral.</li>
+                        <li class="lst3">Cushioning : High Energizing.</li>
+                        <li class="lst3">Total Weight : 300gm</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="bx10">
+
+                <div class="bx9">
+                    <div class="img-box1">
+                        <img class="image1" src="./tumie-image/10.jpg" alt="">
+                        <div class="bx8">
+                                <i class="bi bi-heart icn2 icnn"></i>
+                                <i class="bi bi-bag-check icn2"></i>
+                                <i class="bi bi-eye icn2"></i>
+                            </div>
+                        </div>
+                </div>
+                    <div class="bx9">
+                    <div class="timer">End In: <span>10</span> : <span class="hour">59</span> : <span class="mint">59</span> : <span class="sec">59</span></div>
+                        <p class="text11">Wayfarer Messenger Bag</p>
+                        <h4 class="text12">$40.19</h4>
+                        <div class="dottedline"></div>
+                        <ul>
+                            <li class="lst3">Predecessor : None.</li>
+                            <li class="lst3">Support Type : Neutral.</li>
+                            <li class="lst3">Cushioning : High Energizing.</li>
+                            <li class="lst3">Total Weight : 300gm</li>
+                        </ul>
+                    </div>
+                    </div>
+    </section>
+    <section class="seventh">
+        <div class="box9">
+            <div class="box10">
+                <h5 class="text13">BEST PRODUCT</h5>
+                <h3 class="text14">Best Pet Food</h3>
+                <p class="text15">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate</p>
+                <p class="text15">Velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidata non proident, sunt in culpa qui officia deserun mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error.</p>
+                <button class="button2">SHOP NOW</button>
+            </div>
+            <div class="box10">
+                <img src="./tumie-image/1.png" alt="">
+            </div>
+        </div>
+    </section>
+    <section class="eighth">
+        <h3 class="text4">NEW & LATEST</h3>
+        <h1 class="text5">Latest Blog</h1>
+        <div class="box9">
+            <div class="box11">
+                <div class="img-div2">
+                    <img class="image4" src="./tumie-image/1 (1).jpg" alt="">
+                </div>
+                    <p class="text16">By: Admin  Sep 24,2022</p>
+                    <p class="text17">Lorem ipsum dolor sit amet conse adipis.</p>
+                <button class="button4">READ ME</button>
+            </div>
+            <div class="box11">
+                <div class="img-div2">
+                    <img class="image4" src="./tumie-image/2 (1).jpg" alt="">
+                </div>
+                    <p class="text16">By: Admin  Sep 24,2022</p>
+                    <p class="text17">Lorem ipsum dolor sit amet conse adipis.</p>
+                <button class="button4">READ ME</button>
+            </div>
+            <div class="box11">
+                <div class="img-div2">
+                    <img class="image4" src="./tumie-image/3 (1).jpg" alt="">
+                </div>
+                    <p class="text16">By: Admin  Sep 24,2022</p>
+                    <p class="text17">Lorem ipsum dolor sit amet conse adipis.</p>
+                <button class="button4">READ ME</button>
+            </div>
+
+        </div>
+
+    </section>
+    <section class="nineth">
+        <div class="box13">
+            <div class="box12">
+                <h4 class="text18">About Us</h4>
+                <p class="text19">Lorem ipsum dolor sit amet, consectel adipisicing elit, sed do eiusmod temp incidid ut labore et dolo</p>
+                <div class="icon-div1">
+                    <i class="bi bi-facebook icn3"></i>
+                    <i class="bi bi-globe icn3"></i>
+                    <i class="bi bi-pinterest icn3"></i>
+                    <i class="bi bi-twitter icn3"></i>
+                </div>
+            </div>
+            <div class="box12">
+                <h4 class="text18">Information</h4>
+                <ul class="list2">
+                    <li class="text19">About Us</li>
+                    <li class="text19">Delivery Information</li>
+                    <li class="text19">Privacy Policy</li>
+                    <li class="text19">Terms & Conditions</li>
+                    <li class="text19">Contact Us</li>
+                    <li class="text19">Loag In Info</li>
+                </ul>
+
+            </div>
+            <div class="box12">
+                <h4 class="text18">Our Policy</h4>
+                <ul class="list2">
+                    <li class="text19">Gallery</li>
+                    <li class="text19">Brands</li>
+                    <li class="text19">Gift Certificates</li>
+                    <li class="text19">Specials</li>
+                    <li class="text19">My Account Us</li>
+                    <li class="text19">About Us</li>
+                </ul>
+
+            </div>
+            <div class="box12">
+                <h4 class="text18">Contact Info:</h4>
+                <p class="text19">If you have any question.please contact us at <span class="clr2">demo@example.com</span></p>
+                <div class="bx11">
+                    <i class="bi bi-geo-alt icn4"></i>
+                    <p class="text20">Your address goes here.
+                        123, Address.</p>
+                </div>
+                <div class="bx11">
+                    <i class="bi bi-phone icn4"></i>
+                    <p class="text20"> <span class="clr3">Have any Question</span> 
+                        +0 123 456 789</p>
+                </div>
+            </div>
+        </div>
+        <div class="line"></div>
+        <div class="box14">
+            <p class="text21">© 2021 Tuime. Made with <i class="bi bi-heart-fill icn5"></i>  by <span class="clr4">Codecarnival.</span></p>
+            <img class="image5" src="./tumie-image/payment.png" alt="">
+        </div>
+
+    </section>
+
+
+                
+
+
+
+
+
+
+    <script>
+        let start = document.querySelector(".start"),
+            searchbar = document.querySelector(".searchbar"),
+            icn = document.querySelectorAll(".icn"),
+            icn1 = document.querySelector(".icn1"),
+            lst = document.querySelectorAll(".lst"),
+            dropdown1 = document.querySelectorAll(".dropdown1"),
+            sidebar = document.querySelector(".sidebar"),
+            bx1 = document.querySelector(".bx1"),
+            text1 = document.querySelector(".text1"),
+            yellowcircle = document.querySelector(".yellowcircle"),
+            image00 = document.querySelector(".image00"),
+            pervious = document.querySelector(".pervious"),
+            next = document.querySelector(".next"),
+            firstslide = document.querySelector(".first-slide"),
+            secondslide = document.querySelector(".second-slide"),
+            lst2 = document.querySelectorAll(".lst2"),
+            border = document.querySelector(".border"),
+            ALL = document.querySelectorAll(".ALL"),
+            sec = document.querySelector(".sec"),
+            decrement = 60
+
+        lst2.forEach((e, idx) => {            
+            e.addEventListener("click", () => {
+                let textt = e.innerHTML
+                lst2.forEach((ele, idx) => {
+                    ele.classList.remove("border")
+                })
+                e.classList.add("border")
+            })
+        })
+        lst2.forEach((e) => {
+            e.addEventListener("click", function () {
+                let textt = e.innerHTML
+                console.log(textt);
+                ALL.forEach((ele, indx) => {
+                    ele.classList.remove("active-card")
+                })
+                ALL.forEach((e, idx) => {
+                    if (e.classList.contains(textt)) {
+                        e.classList.add("active-card")
+                    }
+                })
+            })
+
+        })
+        pervious.addEventListener("click", () => {
+            firstslide.style.opacity = "1"
+            secondslide.style.opacity = "0"
+            image00.classList.remove("moveBack")
+            yellowcircle.style.transform = "scale(0)"
+        })
+        next.addEventListener("click", () => {
+            image00.classList.add("moveBack")
+            yellowcircle.style.transform = "scale(1)"
+            secondslide.style.opacity = "1"
+            firstslide.style.opacity = "0"
+        })
+        icn[0].addEventListener("click", () => {
+            searchbar.classList.add("down")
+        })
+        icn1.addEventListener("click", () => {
+            searchbar.classList.remove("down")
+        })
+        icn[3].addEventListener("click", () => {
+            sidebar.classList.add("left")
+        })
+        bx1.addEventListener("click", () => {
+            sidebar.classList.remove("left")
+        })
+        lst.forEach((e, idx) => {
+            e.addEventListener("mouseenter", () => {
+                dropdown1[idx].classList.add("up")
+            })
+            e.addEventListener("mouseleave", () => {
+                dropdown1[idx].classList.remove("up")
+            })
+        })
+    </script>
+</body>
+
+</html>
